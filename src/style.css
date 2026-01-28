@@ -207,6 +207,23 @@ button {
     cursor: not-allowed;
 }
 
+.translate-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.translate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
 .clear-btn {
     background: #f0f0f0;
     color: #333;
@@ -215,6 +232,111 @@ button {
 
 .clear-btn:hover {
     background: #e0e0e0;
+}
+
+.translation-section {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.translation-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.translation-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.translation-controls label {
+    color: #333;
+    font-weight: 600;
+}
+
+.language-select {
+    flex: 1;
+    min-width: 150px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+}
+
+.generate-btn,
+.copy-btn,
+.merge-btn,
+.back-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.generate-btn:hover,
+.copy-btn:hover,
+.merge-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.back-btn {
+    background: #999;
+}
+
+.back-btn:hover {
+    background: #777;
+}
+
+.prompt-section,
+.merge-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.prompt-section h3,
+.merge-section h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.merge-info {
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.prompt-textarea,
+.translated-textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+.prompt-textarea {
+    background: #f5f5f5;
 }
 
 .error-message {
@@ -239,7 +361,8 @@ button {
 
 .download-icon,
 .clear-icon,
-.upload-icon {
+.upload-icon,
+.translate-icon {
     display: inline-block;
 }
 
@@ -262,5 +385,12 @@ button {
 
     button {
         width: 100%;
+    }
+
+    .translation-controls {
+        flex-direction: column;
+    }
+
+    .language-select {        width: 100%;
     }
 }

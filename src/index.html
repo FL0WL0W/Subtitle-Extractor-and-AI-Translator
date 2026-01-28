@@ -33,10 +33,49 @@
                     <span class="download-icon">⬇️</span>
                     Download SRT
                 </button>
+                <button id="translateBtn" class="translate-btn" style="display: none;">
+                    <span class="translate-icon">🤖</span>
+                    Translate with AI
+                </button>
                 <button id="clearBtn" class="clear-btn">
                     <span class="clear-icon">🔄</span>
                     Clear
                 </button>
+            </div>
+        </div>
+
+        <div id="translationSection" class="translation-section" style="display: none;">
+            <h2>AI Translation Assistant</h2>
+            
+            <div class="translation-controls">
+                <label for="targetLanguage">Translate to:</label>
+                <select id="targetLanguage" class="language-select">
+                    <option value="">Select language...</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="French">French</option>
+                    <option value="German">German</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Portuguese">Portuguese</option>
+                    <option value="Russian">Russian</option>
+                    <option value="Japanese">Japanese</option>
+                    <option value="Chinese">Chinese (Simplified)</option>
+                    <option value="Korean">Korean</option>
+                </select>
+                <button id="generatePromptBtn" class="generate-btn">Generate Prompt for AI</button>
+                <button id="backToDownloadBtn" class="back-btn">Back to Download</button>
+            </div>
+
+            <div id="promptSection" class="prompt-section" style="display: none;">
+                <h3>Copy this prompt to your AI translator:</h3>
+                <textarea id="promptTextarea" class="prompt-textarea" readonly></textarea>
+                <button id="copyPromptBtn" class="copy-btn">Copy Prompt</button>
+            </div>
+
+            <div id="mergeSection" class="merge-section" style="display: none;">
+                <h3>Paste the translated lines here:</h3>
+                <p class="merge-info">Paste the translated lines in the same order as the prompt, one translation per line.</p>
+                <textarea id="translatedTextarea" class="translated-textarea" placeholder="Paste translated lines here..."></textarea>
+                <button id="mergeLinesBtn" class="merge-btn">Merge Translations & Download SRT</button>
             </div>
         </div>
 
