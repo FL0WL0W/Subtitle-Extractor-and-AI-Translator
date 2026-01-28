@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subtitle Extractor</title>
+    <title>Subtitle Extractor and AI Translator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Subtitle Extractor</h1>
-        <p class="subtitle">Extract subtitles from video files in SRT format</p>
+        <h1>Subtitle Extractor and AI Translator</h1>
+        <p class="subtitle">Extract subtitles from video files or upload SRT files directly, then translate with AI</p>
         
         <div class="upload-section">
             <label for="videoFile" class="file-label">
                 <span class="upload-icon">📁</span>
-                <span class="upload-text">Click to select video file</span>
-                <input type="file" id="videoFile" accept="video/*" />
+                <span class="upload-text">Click to select video or SRT file</span>
+                <input type="file" id="videoFile" accept="video/*,.srt" />
             </label>
             <p class="file-info" id="fileInfo"></p>
             <div id="loadingBar" class="loading-bar" style="display: none;">

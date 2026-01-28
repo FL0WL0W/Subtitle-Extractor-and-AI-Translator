@@ -335,15 +335,61 @@ document.getElementById('videoFile').addEventListener('change', (event) => {
     if (!file) return;
 
     document.getElementById('fileInfo').textContent = `Selected: ${file.name}`;
-    showLoadingBar('Analyzing video...');
     selectedTracks.clear();
     availableStreams = [];
 
-    worker.postMessage({ type: 'PROCESS_VIDEO', data: { file } });
+    // Check if it's an SRT file
+    if (file.name.endsWith('.srt')) {
+        handleSRTFileUpload(file);
+    } else {
+        // It's a video file
+        showLoadingBar('Analyzing video...');
+        worker.postMessage({ type: 'PROCESS_VIDEO', data: { file } });
+    }
 });
+
+const handleSRTFileUpload = (file) => {
+    const reader = new FileReader();
+    
+    reader.onload = (e) => {
+        try {
+            const content = e.target.result;
+            currentSubtitleContent = content;
+            currentSubtitleBlocks = parseSubtitleBlocks(content);
+            
+            // Create a single subtitle stream entry
+            availableStreams = [{ 
+                index: 0, 
+                name: file.name, 
+                language: 'Unknown',
+                codec: 'srt'
+            }];
+            
+            selectedTracks.add(0);
+            displaySubtitleStreams(availableStreams);
+            hideLoadingBar();
+        } catch (error) {
+            showError('Error reading SRT file: ' + error.message);
+            hideLoadingBar();
+        }
+    };
+    
+    reader.onerror = () => {
+        showError('Error reading file');
+        hideLoadingBar();
+    };
+    
+    reader.readAsText(file);
+};
 
 document.getElementById('downloadBtn').addEventListener('click', () => {
     if (selectedTracks.size === 0) return;
+
+    // If we have currentSubtitleContent already (from SRT upload), just download it
+    if (currentSubtitleContent && availableStreams[0] && availableStreams[0].codec === 'srt') {
+        downloadSRT(currentSubtitleContent);
+        return;
+    }
 
     showLoadingBar('Extracting subtitles...');
     const trackIndices = Array.from(selectedTracks).sort();
@@ -365,6 +411,12 @@ document.getElementById('translateBtn').addEventListener('click', () => {
 document.getElementById('generatePromptBtn').addEventListener('click', () => {
     if (selectedTracks.size === 0) {
         showError('Please select at least one subtitle track');
+        return;
+    }
+
+    // If we already have subtitle blocks (from SRT upload), skip worker extraction
+    if (currentSubtitleBlocks && currentSubtitleBlocks.length > 0 && availableStreams[0] && availableStreams[0].codec === 'srt') {
+        generatePromptUI();
         return;
     }
 
