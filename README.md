@@ -1,6 +1,6 @@
 # Subtitle Extractor
 
-A web application that extracts subtitle tracks from video files and downloads them as SRT files. Built with Node.js, Webpack, and FFmpeg WebWorker.
+A web application that extracts subtitle tracks from video files and downloads them as SRT files. Built with Node.js, Webpack, and FFmpeg WebWorker. Built with copilot Claude Haiku 4.5
 
 ## Features
 
